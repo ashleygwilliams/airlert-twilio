@@ -30,7 +30,7 @@ class BigApp < Sinatra::Application
       puts @myUsers.users
     end
     twiml = Twilio::TwiML::Response.new do |r|
-      r.Sms "Thanks for signing up with Airlert!"
+      r.Sms "Thanks for signing up with Airlert! #{@myUsers.users}"
     end
     twiml.text
   end
