@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'twilio-ruby'
 require 'bundler'
 
 Bundler.require
@@ -17,6 +18,13 @@ class BigApp < Sinatra::Application
 
   get '/' do
     erb :index
+  end
+
+  get '/sms-quickstart' do
+    twiml = Twilio::TwiML::Response.new do |r|
+      r.Sms "Hey Monkey. Thanks for the message!"
+    end
+    twiml.text
   end
 
   get '/scraper' do
