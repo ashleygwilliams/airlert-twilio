@@ -11,7 +11,7 @@ end
 class BigApp < Sinatra::Application
 
   configure do
-    @@users = ["+19084182532"]
+    @@users = []
     set :root, File.dirname(__FILE__)
     set :public_folder, Proc.new { File.join(root, "public") }
     set :public_folder, 'public'
