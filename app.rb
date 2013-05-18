@@ -9,11 +9,9 @@ Dir.glob('./lib/*.rb') do |model|
 end
 
 class BigApp < Sinatra::Application
-  before do
-    @users = []
-  end
 
   configure do
+    @@users = []
     set :root, File.dirname(__FILE__)
     set :public_folder, Proc.new { File.join(root, "public") }
     set :public_folder, 'public'
@@ -42,7 +40,7 @@ class BigApp < Sinatra::Application
       client.account.sms.messages.create(
         :from => from,
         :to => "+19084182532",
-        :body => "#{@users}"
+        :body => "poop #{@users}"
       )
   end
 
