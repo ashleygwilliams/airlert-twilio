@@ -35,6 +35,21 @@ class BigApp < Sinatra::Application
     twiml.text
   end
 
+  get '/send-text' do
+    from = "+18622442771" # Your Twilio number
+    puts "------------------------------"
+    puts @myUsers.users
+    @myUsers.users.each do |user|
+      client.account.sms.messages.create(
+        :from => from,
+        :to => user,
+        :body => "Hey, Monkey party at 6PM. Bring Bananas!"
+      )
+      puts "------------------------------"
+      puts "Sent message to #{user}"
+    end
+  end
+
   get '/scraper' do
     erb :scraper
   end
