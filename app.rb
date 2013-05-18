@@ -31,7 +31,7 @@ class BigApp < Sinatra::Application
     twiml.text
   end
 
-  get '/send-text' do
+  post '/send-text' do
     account_sid = "ACeac2f16de43f1d54afc199dc5f7ae200"
     auth_token = "8d7f041fe6dd708664d01d472a2ed904"
     client = Twilio::REST::Client.new account_sid, auth_token
