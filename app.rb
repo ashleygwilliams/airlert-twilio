@@ -20,9 +20,9 @@ class BigApp < Sinatra::Application
     erb :index
   end
 
-  get '/sms-quickstart' do
+  get '/sign-up' do
     twiml = Twilio::TwiML::Response.new do |r|
-      r.Sms "Hey Monkey. Thanks for the message!"
+      r.Sms "Thanks for signing up with Airlert!"
     end
     twiml.text
   end
