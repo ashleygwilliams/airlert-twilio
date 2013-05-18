@@ -25,7 +25,7 @@ class BigApp < Sinatra::Application
 
   get '/sign-up' do
     if !myUsers.users.include?(params[:From])
-      @myUsers.addUser(params[:From])
+      myUsers.addUser(params[:From])
       puts "------------------------------"
       puts myUsers.users
     end
