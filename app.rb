@@ -42,7 +42,7 @@ class BigApp < Sinatra::Application
     @myUsers.users.each do |user|
       client.account.sms.messages.create(
         :from => from,
-        :to => user,
+        :to => "+19084182532",
         :body => "Hey, Monkey party at 6PM. Bring Bananas!"
       )
       puts "------------------------------"
