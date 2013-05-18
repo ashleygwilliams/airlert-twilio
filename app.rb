@@ -37,11 +37,13 @@ class BigApp < Sinatra::Application
     client = Twilio::REST::Client.new account_sid, auth_token
 
     from = "+18622442771" # Your Twilio number
+    @@users.each do |user|  
       client.account.sms.messages.create(
         :from => from,
-        :to => "+19084182532",
-        :body => "poop #{@@users}"
+        :to => user,
+        :body => "THERES A FIRE OMG"
       )
+    end
   end
 
   get '/scraper' do
