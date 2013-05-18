@@ -18,6 +18,7 @@ class BigApp < Sinatra::Application
   end
 
   get '/' do
+    @users = @@users
     erb :index
   end
 

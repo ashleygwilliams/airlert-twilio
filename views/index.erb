@@ -1,9 +1,8 @@
-<h1>Index</h1>
-<a href="" class="btn">Button</a>
-<h2><%= Random::WORDS.sample %></h2>
-<img src="/img/robots/large<%= Random::getRandomNumber()%>.jpg"/>
+<h1>Smoke Connector</h1>
 <ul>
-	<% Scraper::getTableData.each do |td| %>
-		<li><%= td %></li>
-	<% end %>
+<% @users.each do |user| %>
+  <li>
+    <%= user %>
+  </li>
+<% end %>
 </ul>
