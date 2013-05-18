@@ -9,6 +9,9 @@ Dir.glob('./lib/*.rb') do |model|
 end
 
 class BigApp < Sinatra::Application
+  before do
+    @myUsers = Users.new
+  end
 
   configure do
     set :root, File.dirname(__FILE__)
@@ -21,6 +24,11 @@ class BigApp < Sinatra::Application
   end
 
   get '/sign-up' do
+    if !@myUsers.users.include?(params[:From])
+      @myUsers.addUser(params[:From])
+      puts "------------------------------"
+      puts @myUsers.users
+    end
     twiml = Twilio::TwiML::Response.new do |r|
       r.Sms "Thanks for signing up with Airlert!"
     end
