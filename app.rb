@@ -10,7 +10,7 @@ end
 
 class BigApp < Sinatra::Application
   before do
-    myUsers ||= Users.new
+    @users = []
   end
 
   configure do
@@ -24,13 +24,11 @@ class BigApp < Sinatra::Application
   end
 
   get '/sign-up' do
-    if !myUsers.users.include?(params[:From])
-      myUsers.addUser(params[:From])
-      puts "------------------------------"
-      puts myUsers.users
+    if !users.include?(params[:From])
+      users.push(params[:From])
     end
     twiml = Twilio::TwiML::Response.new do |r|
-      r.Sms "Thanks for signing up with Airlert! #{@myUsers.users}"
+      r.Sms "Thanks for signing up with Airlert! #{users}"
     end
     twiml.text
   end
@@ -44,7 +42,7 @@ class BigApp < Sinatra::Application
       client.account.sms.messages.create(
         :from => from,
         :to => "+19084182532",
-        :body => "#{myUsers.users}"
+        :body => "#{users}"
       )
   end
 
