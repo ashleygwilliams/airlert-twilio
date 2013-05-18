@@ -11,7 +11,7 @@ end
 class BigApp < Sinatra::Application
 
   configure do
-    @@users = []
+    @@users = ["+19084182532"]
     set :root, File.dirname(__FILE__)
     set :public_folder, Proc.new { File.join(root, "public") }
     set :public_folder, 'public'
@@ -22,11 +22,11 @@ class BigApp < Sinatra::Application
   end
 
   get '/sign-up' do
-    if !@users.include?(params[:From])
-      @users.push(params[:From])
+    if !@@users.include?(params[:From])
+      @@users.push(params[:From])
     end
     twiml = Twilio::TwiML::Response.new do |r|
-      r.Sms "Thanks for signing up with Airlert! #{@users}"
+      r.Sms "Thanks for signing up with Airlert! #{@@users}"
     end
     twiml.text
   end
@@ -40,7 +40,7 @@ class BigApp < Sinatra::Application
       client.account.sms.messages.create(
         :from => from,
         :to => "+19084182532",
-        :body => "poop #{@users}"
+        :body => "poop #{@@users}"
       )
   end
 
