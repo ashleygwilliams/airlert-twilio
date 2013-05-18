@@ -10,7 +10,7 @@ end
 
 class BigApp < Sinatra::Application
   before do
-    @myUsers = Users.new
+    @myUsers ||= Users.new
   end
 
   configure do
@@ -36,23 +36,16 @@ class BigApp < Sinatra::Application
   end
 
   get '/send-text' do
-
     account_sid = "ACeac2f16de43f1d54afc199dc5f7ae200"
     auth_token = "8d7f041fe6dd708664d01d472a2ed904"
     client = Twilio::REST::Client.new account_sid, auth_token
 
     from = "+18622442771" # Your Twilio number
-    puts "------------------------------"
-    puts @myUsers.users
-    @myUsers.users.each do |user|
       client.account.sms.messages.create(
         :from => from,
-        :to => user,
-        :body => "Hey, Monkey party at 6PM. Bring Bananas!"
+        :to => "+19084182532",
+        :body => "#{@myUsers.users}"
       )
-      puts "------------------------------"
-      puts "Sent message to #{user}"
-    end
   end
 
   get '/scraper' do
